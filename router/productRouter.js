@@ -18,7 +18,7 @@ let productsArray = [
 ];
 
 router.get("/", function (req, res) {
-  res.json({ productsArray });
+  res.json({ payload: productsArray });
 });
 
 router.get("/:id", function (req, res) {
@@ -26,7 +26,7 @@ router.get("/:id", function (req, res) {
   productsArray.forEach(function (item) {
     if (item.id === productId) {
       res.json({
-        item,
+        payload: item,
       });
     } else {
       res.json({
@@ -42,7 +42,7 @@ router.get("/:name", function (req, res) {
   productsArray.forEach(function (item) {
     if (item.name === productName) {
       res.json({
-        item,
+        payload: item,
       });
     } else {
       res.json({
@@ -70,7 +70,7 @@ router.post("/create-product", function (req, res) {
     });
   } else {
     productsArray.push(newProductObject);
-    res.json({ productsArray });
+    res.json({ payload: productsArray });
   }
 });
 
@@ -91,7 +91,7 @@ router.put("/update-product/:id", function (req, res) {
       res.json({ message: "Sorry, the information you input is invalid." });
     } else {
       foundProduct.id = req.body.updatedID;
-      res.json({ productsArray });
+      res.json({ payload: productsArray });
     }
   } else {
     res.json({ message: "Product not found" });
